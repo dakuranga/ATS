@@ -1,0 +1,155 @@
+{% extends 'settings.html' %}
+{% load static %}
+{% load widget_tweaks %}
+<title>{% block title %}Settings{% endblock title %}</title>
+{% block settings_content %}
+<link href="{% static 'css/usersettings.css' %}" rel="stylesheet">
+<div class="p-11 sm:ml-64">
+   <!-- Table Section -->
+   <div class="max-w-9xl mx-auto  ">
+      <!-- Card -->
+      <div class="flex flex-col">
+        <div class="-m-1.5 overflow-x-auto">
+          <div class="p-1.5 min-w-full inline-block align-middle">
+            <div class="bg-white border border-gray-200 shadow-sm overflow-hidden">                   
+               <!-- Header -->
+                   <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200 dark:border-gray-700">                       
+                     <div>
+
+                     <h2 class="text-2xl font-bold">My Team</h2>
+                  </div>
+                  <a href="#" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
+                     Invite New Member
+                   </a>
+                   </div>
+                   <!-- End Header -->
+
+                   <!-- Table -->
+                   <table class="min-w-full divide-y divide-gray-200">
+                     <thead class="bg-gray-50">
+                       <tr>
+                         <th scope="col" class="px-6 py-3 text-start">
+                           <div class="flex items-center gap-x-2">
+                             <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                               Name
+                             </span>
+                           </div>
+                         </th>
+         
+                         <th scope="col" class="px-6 py-3 text-start">
+                           <div class="flex items-center gap-x-2">
+                             <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                               Email
+                             </span>
+                           </div>
+                         </th>
+         
+                         <th scope="col" class="px-6 py-3 text-start">
+                           <div class="flex items-center gap-x-2">
+                             <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                               Active
+                             </span>
+                           </div>
+                         </th>
+         
+                         <th scope="col" class="px-6 py-3 text-start">
+                           <div class="flex items-center gap-x-2">
+                             <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                               Is Manager
+                             </span>
+                           </div>
+                         </th>
+       
+                         <th scope="col" class="px-6 py-3 text-start">
+                           <div class="flex items-center gap-x-2">
+                             <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                               Verified
+                             </span>
+                           </div>
+                         </th>
+         
+                         <th scope="col" class="px-6 py-3 text-start">
+                           <div class="flex items-center gap-x-2">
+                             <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                               Team
+                             </span>
+                           </div>
+                         </th>
+       
+                         <th scope="col" class="px-6 py-3 text-start">
+                           <div class="flex items-center gap-x-2">
+                             <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                              Options
+                             </span>
+                           </div>
+                         </th>
+                       </tr>
+                     </thead>
+                       <tbody class="bg-white dark:bg-slate-800 divide-y divide-gray-200 dark:divide-gray-700">
+                           {% for user in users %}
+                           <tr>
+                               <td class="px-6 py-4 whitespace-nowrap">
+                                   <div class="text-sm font-medium text-gray-900 dark:text-gray-200">{{ user.first_name }} {{ user.last_name }}</div>
+                               </td>
+                               <td class="px-6 py-4 whitespace-nowrap">
+                                 <div class="text-sm text-gray-500">{{ user.email }}</div>
+                              </td>
+                              <td class="px-6 py-4 whitespace-nowrap">
+                                 <div class="text-sm text-gray-500">{{ user.is_active }}</div>
+                              </td>
+                              <td class="px-6 py-4 whitespace-nowrap">
+                                 <div class="text-sm text-gray-500">{{ user.is_superuser }}</div>
+                              </td>
+                              <td class="px-6 py-4 whitespace-nowrap">
+                                 <div class="text-sm text-gray-500">{{ user.is_verified }}</div>
+                              </td>
+                              <td class="px-6 py-4 whitespace-nowrap">
+                                 <div class="text-sm text-gray-500">{{ user.team }}</div>
+                              </td>
+                             
+                          <td class="h-px w-px whitespace-nowrap">
+                              <div class="px-6 py-1.5">
+                                <div class="hs-dropdown relative inline-block [--placement:bottom-right]">
+                                  <button id="hs-table-dropdown-{{ client.id }}" type="button" class="hs-dropdown-toggle py-1.5 px-2 inline-flex justify-center items-center gap-2 rounded-lg text-gray-700 align-middle disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm">
+                                    <svg class="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+                                  </button>
+                                  
+                                  <div id="hs-dropdown-menu-{{ client.id }}" class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden mt-2 divide-y divide-gray-200 min-w-[10rem] z-10 bg-white shadow-2xl rounded-lg p-2 mt-2">
+                                    <div class="py-2 first:pt-0 last:pb-0">
+                                      
+                                      <a class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500" href="{% url 'settings_users_edit' user.id %}">
+                                        Edit
+                                    </a>
+                                    
+                                      <form action="{% url 'settings_users_delete' user.id %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit"  class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500">
+                                            Delete
+                                        </button>
+                                    </form>
+                                    
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </td>
+                           </tr>
+                           {% endfor %}
+                       </tbody>
+                   </table>
+               </div>
+           </div>
+       </div>
+   </div>
+   <!-- End Card -->
+</div>
+</div>
+
+
+<script src="{% static 'preline/dist/preline.js' %}"></script>
+
+
+
+
+{% endblock settings_content %}
+

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f6f6f6;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            margin: 0 auto;
+            padding: 30px;
+            max-width: 600px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0px 10px 20px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background-color: #3498db;
+            color: #fff;
+            border-radius: 5px 5px 0 0;
+        }
+        h1 {
+            font-size: 26px;
+            margin: 0;
+        }
+        p {
+            font-size: 16px;
+        }
+        .button-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .verification-button {
+            background-color: #3498db;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-size: 18px;
+            display: inline-block;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #888;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>You're almost there!</h1>
+        </div>
+        <p>Hi {{ user.first_name }},</p>
+        <p>We're excited to have you onboard. Before you can start exploring all the features we have to offer, we need to confirm your email address. This helps us maintain the security and authenticity of our user base.</p>
+        <p>Just click on the button below and you'll be all set:</p>
+        <div class="button-container">
+            <a href="http://{{ domain }}/confirm-email/{{ uid }}/{{ token }}" class="verification-button">Verify Your Email</a>
+        </div>
+        <p>If you didn't sign up for an Koldboot account and feel this was a mistake, please ignore this email or contact our support team.</p>
+        <p class="footer">Cheers, <br> Koldboot Team</p>
+    </div>
+</body>
+</html>

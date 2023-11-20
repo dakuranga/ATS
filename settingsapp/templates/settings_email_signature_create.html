@@ -1,0 +1,62 @@
+{% extends 'settings.html' %}
+{% load static %}
+{% load widget_tweaks %}
+<title>{% block title %}Settings{% endblock title %}</title>
+{% block settings_content %}
+<link href="{% static 'css/usersettings.css' %}" rel="stylesheet">
+<script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
+
+<div class="p-11 sm:ml-64">
+  <!-- Table Section -->
+  <div class="max-w-9xl mx-auto  ">
+     <!-- Card -->
+     <div class="flex flex-col">
+       <div class="-m-1.5 overflow-x-auto">
+         <div class="p-1.5 min-w-full inline-block align-middle">
+           <div class="bg-white border border-gray-200 shadow-sm overflow-hidden"> 
+
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card border-primary mb-3">
+                <div class="card-body form-container">
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <div class="form-group">
+                            <label for="{{ form.name.id_for_label }}">Name</label>
+                            {{ form.name|add_class:"form-control full-width" }}
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="{{ form.content.id_for_label }}">Signature Body</label>
+                            <div>
+                                {{ form.content|add_class:"full-width" }}
+                            </div>
+                        </div>
+                        <div class="form-group text-right">
+                            <button type="submit" class="btn btn-primary">{% if is_edit %}Update{% else %}Create{% endif %} Signature</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<script>
+    CKEDITOR.replace('id_content');  // This assumes the id of the textarea is 'id_content'. Adjust if necessary.
+</script>
+
+<script src="{% static 'preline/dist/preline.js' %}"></script>
+{% endblock settings_content %}
+

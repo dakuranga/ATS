@@ -1,0 +1,160 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Koldboot{% endblock title %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<style>
+  .navbar-dropdown {
+      right: 0; /* Align dropdown to the right */
+      left: auto; /* Override default left alignment */
+      z-index: 1000; /* Ensure dropdown is above other content */
+  }
+</style>
+<body>
+    <header>
+      <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="#">
+            <span class="icon" style="font-size: 32px;"><i class="fas fa-rocket"></i></span>
+          </a>
+
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+      
+        <div id="navbarMenu" class="navbar-menu">
+          <div class="navbar-start">
+            <a class="navbar-item" href="{% url 'home' %}">
+              Dashboard
+            </a>
+
+            <a class="navbar-item" href="{% url 'jobs' %}">
+              Jobs
+            </a>
+
+            <a class="navbar-item">
+              Submissions
+            </a>
+        
+
+            <a class="navbar-item">
+              Interviews
+            </a>
+
+            <a class="navbar-item">
+              Talent Pool
+            </a>
+            
+            <a class="navbar-item" href="{% url 'clients' %}">
+              Clients
+            </a>
+            
+            
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">
+                Reports
+              </a>
+      
+              <div class="navbar-dropdown">
+                <a class="navbar-item">
+                  TA Reports
+                </a>
+                <a class="navbar-item">
+                  Job Reports
+                </a>
+                <hr class="navbar-divider">
+                <a class="navbar-item">
+                  Data Export
+                </a>
+              </div>
+            </div>
+          </div>
+      
+          <div class="navbar-end">
+            <a class="navbar-item">
+              <span class="icon">
+                <i class="fas fa-envelope"></i>
+              </span>
+            </a>
+
+            <a class="navbar-item" href="{% url 'settings' %}">
+              <span class="icon">
+                  <i class="fas fa-cog"></i>
+              </span>
+          </a>
+
+            <a class="navbar-item">
+              <span class="icon">
+                <i class="fas fa-bell"></i>
+              </span>
+            </a>
+          
+
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">
+                {{ request.user.team }}
+              </a>
+      
+              <div class="navbar-dropdown">
+                <a class="navbar-item">
+                  {{ request.user.first_name }} {{ request.user.last_name }}
+                </a>
+                <a class="navbar-item">
+                  {{ request.user.email }} 
+                </a>
+                <a class="navbar-item">
+                  My Profile
+                </a>
+                <a class="navbar-item" href="{% url 'settings' %}">
+                  Settings
+                </a>
+                <hr class="navbar-divider">
+                <a class="navbar-item" href="{% url 'logout' %}">
+                  LogOut
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </nav>
+    </header>
+
+    <main>
+
+        <div class="mx-auto" style="width: 100%; height: 100%; box-sizing: border-box;">
+          {% block content %}
+          {% endblock %}
+        </div>
+
+    </main>
+  
+    <script>
+      // Mobile menu toggle script
+      document.addEventListener('DOMContentLoaded', () => {
+          const navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+          if (navbarBurgers.length > 0) {
+              navbarBurgers.forEach(el => {
+                  el.addEventListener('click', () => {
+                      const target = el.dataset.target;
+                      const $target = document.getElementById(target);
+                      el.classList.toggle('is-active');
+                      $target.classList.toggle('is-active');
+                  });
+              });
+          }
+      });
+  </script>
+  
+</body>
+</html>

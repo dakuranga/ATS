@@ -1,0 +1,14 @@
+{
+    "team_i_com": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": "databases/team_i_com.sqlite3"
+    },
+    "team_google_com": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": "databases/team_google_com.sqlite3"
+    },
+    "team_linksft_com": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": "databases/team_linksft_com.sqlite3"
+    }
+}

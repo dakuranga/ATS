@@ -1,0 +1,215 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Clients{% endblock %}
+{% block content %}
+
+<link href="{% static 'css/clients.css' %}" rel="stylesheet">
+
+<!-- Table Section -->
+<div class="max-w-9xl mx-auto  ">
+    <!-- Card -->
+    <div class="flex flex-col">
+      <div class="-m-1.5 overflow-x-auto">
+        <div class="p-1.5 min-w-full inline-block align-middle">
+          <div class="bg-white border border-gray-200 shadow-sm overflow-hidden">
+            <!-- Header -->
+            <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200">
+              <div>
+                <h2 class="text-xl font-semibold text-gray-800">
+                  Clients
+                </h2>
+              </div>
+            </div>
+            <!-- End Header -->
+  
+            <!-- Table -->
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+
+                  <th scope="col" class="px-6 py-3 text-start">
+                    <div class="flex items-center h-5">
+                      <input id="hs-table-checkbox-all" type="checkbox" class="border-gray-200 rounded text-blue-600 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800">
+                      <label for="hs-table-checkbox-all" class="sr-only">Checkbox</label>
+                    </div>
+                  </th>
+
+                  <th scope="col" class="px-6 py-3 text-start">
+                    <div class="flex items-center gap-x-2">
+                      <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                        Name
+                      </span>
+                    </div>
+                  </th>
+  
+                  <th scope="col" class="px-6 py-3 text-start">
+                    <div class="flex items-center gap-x-2">
+                      <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                        Code
+                      </span>
+                    </div>
+                  </th>
+  
+                  <th scope="col" class="px-6 py-3 text-start">
+                    <div class="flex items-center gap-x-2">
+                      <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                        Website
+                      </span>
+                    </div>
+                  </th>
+  
+                  <th scope="col" class="px-6 py-3 text-start">
+                    <div class="flex items-center gap-x-2">
+                      <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                        Details
+                      </span>
+                    </div>
+                  </th>
+
+                  <th scope="col" class="px-6 py-3 text-start">
+                    <div class="flex items-center gap-x-2">
+                      <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                        HQ
+                      </span>
+                    </div>
+                  </th>
+  
+                  <th scope="col" class="px-6 py-3 text-start">
+                    <div class="flex items-center gap-x-2">
+                      <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                        Client Since
+                      </span>
+                    </div>
+                  </th>
+
+                  <th scope="col" class="px-6 py-3 text-start">
+                    <div class="flex items-center gap-x-2">
+                      <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                       Status
+                      </span>
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+  
+              <tbody class="divide-y divide-gray-200">
+                {% for client in clients %}
+                <tr id="client-{{ client.id }}">
+
+                  <td class="h-px w-px whitespace-nowrap">
+                    <div class="px-6 py-3">
+                      <input id="hs-table-checkbox-1" type="checkbox" class="border-gray-200 rounded text-blue-600 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800">
+                      <label for="hs-table-checkbox-1" class="sr-only">Checkbox</label>
+                    </div>
+                  </td>
+  
+                  <td class="h-px w-px whitespace-nowrap">
+                    <div class="px-6 py-3">
+                      <span class="text-sm text-gray-600">{{ client.name }}</span>
+                    </div>
+                  </td>
+                  <td class="h-px w-px whitespace-nowrap">
+                    <div class="px-6 py-3">
+                      <div class="flex items-center gap-x-2">
+                        <div class="grow">
+                          <span class="text-sm text-gray-600">{{ client.code }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="h-px w-px whitespace-nowrap">
+                    <div class="px-6 py-3">
+                      <div class="grow">
+                        <a href="{{ client.website }}" target="_blank" class="text-sm text-blue-500 hover:underline">{{ client.website }}</a>
+                      </div>
+                    </div>
+                  </td>
+                  
+                  <td class="h-px w-px whitespace-nowrap">
+                    <div class="px-6 py-3">
+                      <span class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-teal-100 text-teal-800 rounded-full">
+                        {% if client.about_client_attachment %}
+                        <a href="{{ client.about_client_attachment.url }}" target="_blank">
+                          <i class="fas fa-file-pdf"></i>
+                        </a>
+                        {% else %}
+                        <span class="text-muted">No Client Info</span>
+                        {% endif %}
+                      </span>
+                    </div>
+                  </td>
+                  
+                  <td class="h-px w-px whitespace-nowrap">
+                    <div class="px-6 py-3">
+                      <span class="text-sm text-gray-600">{{ client.hq }}</span>
+                    </div>
+                    <td class="h-px w-px whitespace-nowrap">
+                      <div class="px-6 py-3">
+                        <span class="text-sm text-gray-600">{{ client.created_at|date:"d-m-Y" }}</span>
+                      </div>
+                  </td>
+                  <td class="h-px w-px whitespace-nowrap">
+                    <div class="px-6 py-3">
+                      <span class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium rounded-full
+                        {% if client.status == 'Active' %}
+                          bg-green-100 text-green-800 dark:bg-green-500/10 dark:text-green-500
+                        {% else %}
+                          bg-red-100 text-red-800 dark:bg-red-500/10 dark:text-red-500
+                        {% endif %}
+                      ">
+                        <svg class="w-2.5 h-2.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                        </svg>
+                        {{ client.status }}
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            <!-- End Table -->
+            <!-- Footer -->
+                <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-t border-gray-200">
+                  <div>
+                    <p class="text-sm text-gray-600">
+                      <span class="font-semibold text-gray-800">{{ clients.paginator.count }}</span> results
+                    </p>
+                  </div>
+
+                  <!-- Pagination -->
+                  <div>
+                    <nav class="flex items-center gap-x-3">
+                      {% if clients.has_previous %}
+                        <a href="?page={{ clients.previous_page_number }}" class="pagination-button">&lt; Previous</a>
+                      {% endif %}
+                      
+                      <div class="flex items-center gap-x-1">
+                        {% for i in clients.paginator.page_range %}
+                          <a href="?page={{ i }}" class="pagination-button px-2 py-1 border border-gray-300 rounded-lg {% if clients.number == i %}bg-blue-500 text-white cursor-default{% else %}bg-white text-blue-500 hover:bg-gray-200{% endif %}">{{ i }}</a>
+                        {% endfor %}
+                      </div>
+                      
+                      {% if clients.has_next %}
+                        <a href="?page={{ clients.next_page_number }}" class="pagination-button">Next &gt;</a>
+                      {% endif %}
+                    </nav>
+                  </div>
+                  <!-- End Pagination -->
+                </div>
+                <!-- End Footer -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Card -->
+  </div>
+ 
+
+
+  <script src="{% static 'preline/dist/preline.js' %}"></script>
+
+
+
+  
+  {% endblock %}

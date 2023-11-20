@@ -1,0 +1,81 @@
+{% extends 'settings.html' %}
+{% load static %}
+{% load widget_tweaks %}
+<title>{% block title %}Settings{% endblock title %}</title>
+{% block settings_content %}
+<link href="{% static 'css/usersettings.css' %}" rel="stylesheet">
+
+<div class="p-11 sm:ml-64">
+  <!-- Table Section -->
+  <div class="max-w-9xl mx-auto  ">
+     <!-- Card -->
+     <div class="flex flex-col">
+       <div class="-m-1.5 overflow-x-auto">
+         <div class="p-1.5 min-w-full inline-block align-middle">
+           <div class="bg-white border border-gray-200 shadow-sm overflow-hidden">                   
+              <!-- Header -->
+                  <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200 dark:border-gray-700">                       
+                    <div>
+                    <h2 class="text-2xl font-bold">My Signatures</h2>
+                 </div>
+                 <a href="{% url 'create_email_signature' %}" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
+                    Add New Signature
+                  </a>
+                  </div>
+                  <!-- End Header -->
+                  <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                      <tr>
+                        <th scope="col" class="px-6 py-3 text-start">
+                          <div class="flex items-center gap-x-2">
+                            <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                              Name
+                            </span>
+                          </div>
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-start">
+                          <div class="flex items-center gap-x-2">
+                            <span class="text-xs font-semibold uppercase tracking-wide text-gray-800">
+                              Signature
+                            </span>
+                          </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white dark:bg-slate-800 divide-y divide-gray-200 dark:divide-gray-700">
+                  {% for signature in signatures %}
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <div class="text-sm font-medium text-gray-900 dark:text-gray-200">{{ signature.name }}</div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <div class="signature-content">
+                        {{ signature.content|safe }}
+                    </div>                    
+                  </td>       
+                  </tr>
+            {% empty %}
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm font-medium text-gray-900 dark:text-gray-200">No Signatures Available</div>
+              </td>
+            </tr>
+            
+            {% endfor %}
+        </tbody>
+    </table>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+<script src="{% static 'preline/dist/preline.js' %}"></script>
+{% endblock settings_content %}
+

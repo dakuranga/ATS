@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Clients{% endblock %}
+{% block content %}
+
+<link href="{% static 'css/home.css' %}" rel="stylesheet">
+
+    <div class="bg-white shadow">
+        <div class="container mx-auto flex justify-center">
+            <div class="border-b border-gray-200">
+                <nav class="flex">
+                    <a href="/" class="group inline-flex items-center py-1 px-6 border-b-1 border-transparent font-medium text-gray-500 hover:text-blue-500 hover:border-blue-500">
+                        My View
+                    </a>
+                    <a href="/today" class="group inline-flex items-center py-1 px-6 border-b-1 border-transparent font-medium text-gray-500 hover:text-blue-500 hover:border-blue-500">
+                        Today at a Glance
+                    </a>
+                    <a href="/dashboard" class="group inline-flex items-center py-1 px-6 border-b-1 border-transparent font-medium text-gray-500 hover:text-blue-500 hover:border-blue-500">
+                        Dashboard
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </div>
+    
+<Summary>
+
+    Months cmpparision
+
+
+    quarters comparision
+
+    Hard numbers that reflect progress
+
+    Offer acceptance
+    Hires by source
+</Summary>
+
+  
+{% endblock %}
